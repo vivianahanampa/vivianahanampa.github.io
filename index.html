@@ -1,0 +1,541 @@
+<title>Viviana Hanampa</title>
+<meta name="description" content="Data scientist and researcher working on neural encoding models, multimodal representations, and applied machine learning. M.S. Data Science, Columbia University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#F8F6F1;
+  --surface:#FFFFFF;
+  --surface-2:#EEEBE3;
+  --ink:#16151D;
+  --ink-2:#3E3D4C;
+  --muted:#6C6B7C;
+  --rule:#E2DFD6;
+  --rule-2:#CBC7BB;
+  --violet:#3D33C9;
+  --violet-soft:#E6E4FB;
+  --on-violet:#FFFFFF;
+  --amber:#B4560E;
+  --amber-soft:#FAE7D3;
+  --shadow:0 1px 2px rgba(22,21,29,.05), 0 20px 44px -30px rgba(22,21,29,.4);
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Karla","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E0D14;
+    --surface:#17161F;
+    --surface-2:#1E1D28;
+    --ink:#EFEDF3;
+    --ink-2:#C5C3D2;
+    --muted:#8D8B9F;
+    --rule:#252430;
+    --rule-2:#38364A;
+    --violet:#A79EFF;
+    --violet-soft:#211F3E;
+    --on-violet:#14121F;
+    --amber:#F0A85A;
+    --amber-soft:#2F2113;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 22px 48px -32px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E0D14;
+  --surface:#17161F;
+  --surface-2:#1E1D28;
+  --ink:#EFEDF3;
+  --ink-2:#C5C3D2;
+  --muted:#8D8B9F;
+  --rule:#252430;
+  --rule-2:#38364A;
+  --violet:#A79EFF;
+  --violet-soft:#211F3E;
+  --on-violet:#14121F;
+  --amber:#F0A85A;
+  --amber-soft:#2F2113;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 22px 48px -32px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--body);font-size:1.02rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--violet);text-underline-offset:3px;text-decoration-thickness:.07em}
+a:hover{text-decoration-thickness:.15em}
+a:focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:3px}
+img{max-width:100%;display:block}
+.wrap{max-width:64rem;margin:0 auto;padding:0 1.5rem}
+
+/* ---------- nav ---------- */
+.topbar{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb, var(--ground) 90%, transparent);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule);
+}
+.topbar .wrap{display:flex;align-items:center;gap:1.6rem;height:3.5rem}
+.topbar .mark{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;margin-right:auto}
+.topbar nav{display:flex;gap:1.4rem}
+.topbar nav a{
+  font-family:var(--mono);font-size:.73rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+}
+.topbar nav a:hover{color:var(--violet)}
+@media (max-width:50rem){.topbar nav{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:4.5rem 0 3.5rem}
+.hero-grid{display:grid;grid-template-columns:1fr 17rem;gap:3.5rem;align-items:center}
+@media (max-width:52rem){.hero-grid{grid-template-columns:1fr;gap:2.25rem}}
+
+.frame{position:relative;border-radius:6px;overflow:hidden;background:var(--surface-2);box-shadow:var(--shadow)}
+.frame.portrait{aspect-ratio:4/5}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame.empty img{display:none}
+.frame.empty::after{
+  content:attr(data-label);
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:1.25rem;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;line-height:1.8;
+  color:var(--muted);
+  background:
+    repeating-linear-gradient(45deg,transparent,transparent 9px,var(--rule) 9px,var(--rule) 10px),
+    var(--surface-2);
+}
+
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:1.1rem;
+}
+h1{
+  font-size:clamp(3rem,7.5vw,5rem);line-height:.95;font-weight:800;letter-spacing:-.035em;
+}
+.tagline{margin-top:1.4rem;font-size:1.28rem;line-height:1.5;color:var(--ink-2);max-width:36ch}
+.tagline b{color:var(--ink);font-weight:600}
+.hero-meta{margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;
+  padding:.32rem .65rem;border:1px solid var(--rule-2);border-radius:99px;color:var(--ink-2);
+}
+.tag.on{background:var(--violet);border-color:var(--violet);color:var(--on-violet)}
+
+/* ---------- sections ---------- */
+section{padding:3.75rem 0;border-top:1px solid var(--rule)}
+.sec-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem}
+.sec-head h2{font-size:2.15rem;font-weight:700;letter-spacing:-.025em}
+.sec-head .n{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;color:var(--muted);
+  margin-left:auto;white-space:nowrap;text-transform:uppercase;
+}
+.prose{max-width:62ch;color:var(--ink-2);font-size:1.06rem}
+.prose + .prose{margin-top:1.1rem}
+.prose b{color:var(--ink);font-weight:600}
+
+/* ---------- experience ---------- */
+.job{
+  display:grid;grid-template-columns:8.5rem 1fr;gap:2rem;
+  padding:1.6rem 0;border-top:1px solid var(--rule);
+}
+.job:first-of-type{border-top:none;padding-top:.25rem}
+.job .when{font-family:var(--mono);font-size:.75rem;color:var(--muted);padding-top:.45rem;line-height:1.7}
+.job h3{font-size:1.22rem;font-weight:700;letter-spacing:-.015em}
+.job .org{font-family:var(--mono);font-size:.78rem;color:var(--violet);margin-top:.3rem}
+.job ul{margin:.75rem 0 0;padding-left:1.05rem;color:var(--ink-2);font-size:.98rem;max-width:60ch}
+.job li{margin-bottom:.35rem}
+@media (max-width:46rem){.job{grid-template-columns:1fr;gap:.4rem}.job .when{padding-top:0}}
+
+/* ---------- education ---------- */
+.edu{display:grid;gap:1rem}
+.deg{
+  display:grid;grid-template-columns:8.5rem 1fr;gap:2rem;
+  background:var(--surface);border:1px solid var(--rule);border-radius:6px;
+  padding:1.3rem 1.5rem;box-shadow:var(--shadow);
+}
+.deg .when{font-family:var(--mono);font-size:.75rem;color:var(--muted);padding-top:.3rem}
+.deg h3{font-size:1.15rem;font-weight:700;letter-spacing:-.015em}
+.deg .school{font-family:var(--mono);font-size:.78rem;color:var(--violet);margin-top:.3rem}
+.deg .detail{margin-top:.6rem;color:var(--ink-2);font-size:.95rem;max-width:58ch}
+@media (max-width:46rem){.deg{grid-template-columns:1fr;gap:.35rem}.deg .when{padding-top:0}}
+
+.pub{
+  margin-top:1.5rem;padding:1.2rem 1.4rem;border-left:3px solid var(--amber);
+  background:var(--amber-soft);border-radius:0 6px 6px 0;
+}
+.awards{margin-top:2rem}
+.awards h3{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;margin-bottom:.9rem;
+}
+.award{
+  display:grid;grid-template-columns:4rem 1fr;gap:1.5rem;
+  padding:.75rem 0;border-top:1px solid var(--rule);align-items:baseline;
+}
+.award .yr{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.award .what{color:var(--ink-2);font-size:.97rem;max-width:62ch}
+.award .what b{color:var(--ink);font-weight:600}
+.award.headline .what b{color:var(--violet)}
+@media (max-width:46rem){.award{grid-template-columns:1fr;gap:.15rem}}
+.pub .label{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--amber)}
+.pub p{margin-top:.5rem;color:var(--ink);font-size:.98rem}
+
+/* ---------- projects ---------- */
+.projects{display:grid;gap:1.1rem}
+.proj{
+  background:var(--surface);border:1px solid var(--rule);border-radius:8px;
+  padding:1.6rem 1.7rem;box-shadow:var(--shadow);
+}
+.proj-top{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.proj h3{font-size:1.4rem;font-weight:700;letter-spacing:-.02em}
+.status{
+  font-family:var(--mono);font-size:.63rem;letter-spacing:.07em;text-transform:uppercase;
+  padding:.24rem .55rem;border-radius:99px;white-space:nowrap;
+}
+.status.live{background:var(--violet-soft);color:var(--violet)}
+.status.wip{background:var(--amber-soft);color:var(--amber)}
+.proj .q{
+  margin-top:.85rem;font-family:var(--display);font-weight:500;font-size:1.16rem;
+  line-height:1.4;color:var(--ink);max-width:54ch;letter-spacing:-.01em;
+}
+.proj .d{margin-top:.75rem;color:var(--ink-2);font-size:.97rem;max-width:62ch}
+.proj .foot{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+.chip{font-family:var(--mono);font-size:.67rem;color:var(--muted);padding:.22rem .5rem;border:1px solid var(--rule);border-radius:99px}
+.proj a.repo{margin-left:auto;font-family:var(--mono);font-size:.74rem}
+
+/* ---------- speaking ---------- */
+.split{display:grid;grid-template-columns:1fr 16rem;gap:2.75rem;align-items:start}
+.stack-2{display:grid;gap:1rem}
+.stack-2 .frame{aspect-ratio:4/3}
+@media (max-width:52rem){.split{grid-template-columns:1fr}.stack-2{grid-template-columns:1fr 1fr}}
+.fill{
+  font-family:var(--mono);font-size:.76rem;color:var(--amber);
+  background:var(--amber-soft);padding:.12rem .4rem;border-radius:3px;
+}
+.social{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem}
+.social a{
+  font-family:var(--mono);font-size:.75rem;text-decoration:none;
+  padding:.48rem .8rem;border:1px solid var(--rule-2);border-radius:99px;color:var(--ink);
+}
+.social a:hover{border-color:var(--violet);color:var(--violet)}
+.social a[data-slot]{border-style:dashed;color:var(--muted)}
+
+/* ---------- more about me ---------- */
+.facets{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+@media (max-width:50rem){.facets{grid-template-columns:1fr}}
+.facet h3{font-size:1.1rem;font-weight:700;letter-spacing:-.015em;margin-bottom:.4rem}
+.facet h3 span{color:var(--violet)}
+.facet p{color:var(--ink-2);font-size:.96rem}
+
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.photo-grid .frame{aspect-ratio:1}
+.photo-grid .frame.wide{grid-column:span 2;aspect-ratio:2/1}
+@media (max-width:46rem){
+  .photo-grid{grid-template-columns:repeat(2,1fr)}
+  .photo-grid .frame.wide{grid-column:span 2}
+}
+.cap{margin-top:.6rem;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+
+/* ---------- contact ---------- */
+.contact-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.contact-grid a{
+  font-family:var(--mono);font-size:.82rem;text-decoration:none;
+  padding:.62rem .95rem;border:1px solid var(--rule-2);border-radius:99px;color:var(--ink);
+}
+.contact-grid a:hover{border-color:var(--violet);color:var(--violet)}
+.contact-grid a.primary{background:var(--violet);border-color:var(--violet);color:var(--on-violet)}
+
+footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted);font-size:.85rem}
+</style>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="mark">Viviana Hanampa</span>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#speaking">Speaking</a>
+      <a href="#more">More about me</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Data scientist &amp; researcher · New York City</div>
+      <h1>Viviana Hanampa</h1>
+      <p class="tagline">I build machine learning systems that reach real people — and study how <b>artificial and biological</b> networks come to represent the world.</p>
+      <div class="hero-meta">
+        <span class="tag on">Open to research &amp; data science roles, Jan 2027</span>
+        <span class="tag">M.S. Data Science, Columbia</span>
+        <span class="tag">3 years shipping ML</span>
+      </div>
+    </div>
+    <div class="frame portrait" data-label="assets/1-me-in-the-library.png"><img src="assets/1-me-in-the-library.png" alt="Viviana Hanampa"></div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><h2>About</h2><span class="n">the short version</span></div>
+    <p class="prose">I'm a data scientist and researcher finishing an <b>M.S. in Data Science at Columbia University</b>. At the Zuckerman Institute I work on neural encoding models — predicting fMRI brain activity from vision-language model representations, and asking whether multimodal networks encode anything beyond what vision and language encode separately.</p>
+    <p class="prose">Before Columbia I spent three years shipping machine learning in Lima, Peru. At <b>Interbank</b> I built credit-risk models serving 50,000+ customers and a retrieval-augmented generation system over financial filings. At <b>Telefónica</b> I deployed clustering models that cut field response times by 85%. At <b>IBM</b> I architected a real-time fraud-detection pipeline adopted by seven enterprise clients.</p>
+    <p class="prose">I trained as an <b>electronic engineer</b> first, which is probably why I like problems that run all the way from raw signal to deployed system. <b>Research interests:</b> neural encoding and decoding, multimodal representations across vision, language and audio, brain–computer interfaces, and applied machine learning for health.</p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><h2>Experience</h2><span class="n">where I've worked</span></div>
+
+    <div class="job">
+      <div class="when">Jan 2026 —<br>present</div>
+      <div>
+        <h3>Graduate Researcher</h3>
+        <div class="org">Columbia University · Zuckerman Institute · New York</div>
+        <ul>
+          <li>Building encoding models that predict fMRI brain activity from vision-language embeddings of paired visual and linguistic stimuli, benchmarked against unimodal baselines.</li>
+          <li>Engineering preprocessing and alignment pipelines for large-scale, multi-participant neuroimaging data.</li>
+          <li>Neural Acoustic Processing Lab, with Prof. Nima Mesgarani.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Feb 2024 —<br>Aug 2025</div>
+      <div>
+        <h3>Data Scientist</h3>
+        <div class="org">Interbank · Lima, Peru</div>
+        <ul>
+          <li>Engineered 180+ predictive features, improving loan-default model performance 20% for 50,000+ customers.</li>
+          <li>Architected Project Inca, a GCP-to-AWS pipeline across 3+ real-time streams — 40% lower latency, unblocking 4 ML teams.</li>
+          <li>Built a RAG system over 500+ earnings reports at 92% metric-extraction accuracy, with LangChain, Pinecone and fine-tuned embeddings.</li>
+          <li>Automated IFRS9 provisioning on AWS, eliminating 388 hours of manual work a year. Nominated for the FLIP Innovation Award.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Aug 2023 —<br>Feb 2024</div>
+      <div>
+        <h3>Data Scientist · Young Executive Program</h3>
+        <div class="org">Telefónica / Movistar · Lima, Peru</div>
+        <ul>
+          <li>Deployed a clustering model defining 3 optimal service zones across Lima's telecom infrastructure — 85% faster field response.</li>
+          <li>Designed ML ticket prioritization over 500+ daily maintenance requests, cutting SLA breaches 30%.</li>
+          <li>Fine-tuned DistilBERT for sentiment classification at 89% accuracy, deployed as a FastAPI microservice.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Aug 2022 —<br>Aug 2023</div>
+      <div>
+        <h3>Customer Success Manager Intern</h3>
+        <div class="org">IBM · Lima, Peru</div>
+        <ul>
+          <li>Architected a real-time fraud-detection pipeline on IBM Event Streams (Kafka) with an MLOps workflow — adopted by 7 enterprise clients.</li>
+          <li>Cut API response time 50% by redesigning a monolith into microservices.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><h2>Education</h2><span class="n">where I studied</span></div>
+    <div class="edu">
+      <div class="deg">
+        <div class="when">2025 — 2026</div>
+        <div>
+          <h3>M.S. Data Science</h3>
+          <div class="school">Columbia University · New York</div>
+          <p class="detail">Coursework in Reinforcement Learning, Machine Learning, Agentic AI for LLMs, and Statistical Inference.</p>
+        </div>
+      </div>
+      <div class="deg">
+        <div class="when">2018 — 2023</div>
+        <div>
+          <h3>B.S. Electronic Engineering</h3>
+          <div class="school">Pontifical Catholic University of Peru · Lima</div>
+          <p class="detail">Graduated with Honors. Coursework in Computer Vision, Digital Signal Processing, and Computer Architecture. Student representative for Electrical Engineering, and chapter chair of IEEE Robotics &amp; Automation Society.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="label">Publication</div>
+      <p>V. Hanampa et al. “Diagnosis of Pneumoconiosis with Machine Learning.” <em>IEEE Engineering in Medicine and Biology Conference (EMBC 2023)</em>, Orlando, FL.</p>
+    </div>
+
+    <div class="awards">
+      <h3>Awards &amp; honours</h3>
+      <div class="award headline">
+        <div class="yr">2025</div>
+        <div class="what"><b>Government of Peru National Scholarship</b> — a national competition awarding full funding for master’s study abroad to top candidates across Peru. This scholarship is what brought me to Columbia.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2025</div>
+        <div class="what"><b>FLIP Innovation Award Nominee</b> — Interbank, for automating IFRS9 provisioning.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2023</div>
+        <div class="what"><b>1st Place</b>, National Automation Contest (Auto Challenge), Peru.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2022</div>
+        <div class="what"><b>Finalist</b>, National Data Science Hackathon — Comptroller General of Peru.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2022</div>
+        <div class="what"><b>Top 5</b>, Hacka CYBER National Cybersecurity Hackathon, Peru.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><h2>Projects</h2><span class="n">questions, not demos</span></div>
+    <div class="projects">
+
+      <article class="proj">
+        <div class="proj-top"><h3>Deep RL for competitive Pokémon</h3><span class="status live">Live</span></div>
+        <p class="q">Can an agent learn competitive play well enough to consistently beat scripted opponents?</p>
+        <p class="d">DQN and Rainbow agents trained in the Pokémon Showdown environment. 150+ engineered state features with reward shaping for long-horizon planning, and a 100K-transition replay buffer that cut training time 60%.</p>
+        <div class="foot">
+          <span class="chip">PyTorch</span><span class="chip">Rainbow DQN</span><span class="chip">Prioritized replay</span>
+          <a class="repo" href="https://github.com/vivianahanampa/rl-pokemon">github →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>edgar-rag</h3><span class="status wip">In progress</span></div>
+        <p class="q">Does chunking strategy actually change answer accuracy in financial-document RAG — or do we just assume it does?</p>
+        <p class="d">Three retrieval configurations over SEC filings, one fixed generator, one labelled question set — including deliberately unanswerable questions, because knowing when to abstain is the part most RAG evaluations skip. Scored on recall@k, MRR, faithfulness and cost per query.</p>
+        <div class="foot">
+          <span class="chip">LangChain</span><span class="chip">Pinecone</span><span class="chip">Cross-encoder rerank</span>
+          <a class="repo" href="https://github.com/vivianahanampa/edgar-rag">github →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>Algonauts 2025 — vision-language encoding</h3><span class="status wip">In progress</span></div>
+        <p class="q">Do vision–language embeddings predict visual cortex better than vision-only embeddings — and if so, where?</p>
+        <p class="d">Voxelwise encoding models comparing CLIP and SigLIP against DINOv2 and supervised ViT at matched architecture, on public fMRI data. The prediction, stated in advance: the multimodal advantage should be near zero in V1 and grow through the ventral stream.</p>
+        <div class="foot">
+          <span class="chip">PyTorch</span><span class="chip">nilearn</span><span class="chip">Ridge encoding</span>
+          <a class="repo" href="https://github.com/blueshark123/algonauts2025-VLM">github →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>Student success early-warning system</h3><span class="status live">In production</span></div>
+        <p class="q">Can we identify students at risk of academic failure early enough to actually intervene?</p>
+        <p class="d">A gradient-boosting classifier reaching 82% recall on at-risk first-semester students, built from five cohorts of historical grade data. Adopted by the university advising office and still running — monitoring 1,000+ students per semester.</p>
+        <div class="foot"><span class="chip">XGBoost</span><span class="chip">Deployed</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="speaking">
+  <div class="wrap">
+    <div class="sec-head"><h2>Speaking &amp; advocacy</h2><span class="n">the other half of the work</span></div>
+    <div class="split">
+      <div>
+        <p class="prose">I host <b>Mujeres al Volante</b>, a Spanish-language podcast about women in engineering and technology — the ones building things, and the ones who had to argue their way into the room first.</p>
+        <p class="prose">I also work to get more girls into STEM: giving talks, teaching, and being visible in rooms where there weren't many women when I was starting out. I've spoken at the PUCP Undergraduate Symposium, on an IEEE Signal Processing Society panel for International Women's Day, and at an IBM community event in Ecuador — and I spent six semesters as a teaching assistant in Computer Architecture and Digital Signal Processing, running seminars for 50+ students.</p>
+        <div class="social">
+          <a href="#" data-slot>Mujeres al Volante →</a>
+          <a href="#" data-slot>Instagram →</a>
+          <a href="#" data-slot>YouTube →</a>
+          <a href="#" data-slot>TikTok →</a>
+          <a href="https://linkedin.com/in/vivianahanampa">LinkedIn →</a>
+        </div>
+        <p class="cap">Send me the links and I'll wire these up.</p>
+      </div>
+      <div class="stack-2">
+        <div class="frame" data-label="assets/2-me-giving-a-talk.png"><img src="assets/2-me-giving-a-talk.png" alt="Giving a talk"></div>
+        <div class="frame" data-label="assets/3-me-teaching.png"><img src="assets/3-me-teaching.png" alt="Teaching"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="more">
+  <div class="wrap">
+    <div class="sec-head"><h2>More about me</h2><span class="n">off the clock</span></div>
+
+    <div class="facets">
+      <div class="facet">
+        <h3>I <span>run</span></h3>
+        <p>Mostly along the Hudson, mostly early. It's where I think through whatever problem I couldn't solve sitting down — which is more of them than I'd like to admit.</p>
+      </div>
+      <div class="facet">
+        <h3>I take <span>photographs</span></h3>
+        <p>A habit that shares more with signal processing than you'd expect: both are about what you choose to keep and what you let fall away.</p>
+      </div>
+      <div class="facet">
+        <h3>I have <span>Maya</span></h3>
+        <p>My dog, my running partner, and a deeply mediocre photographer's assistant. Most of my walks around New York happen with her.</p>
+      </div>
+    </div>
+
+    <div class="photo-grid">
+      <div class="frame wide" data-label="assets/photo-1.png&#10;— a favourite, wide —"><img src="assets/photo-1.png" alt="Photograph"></div>
+      <div class="frame" data-label="assets/maya-nyc.png&#10;— Maya &amp; me in NYC —"><img src="assets/maya-nyc.png" alt="Maya and me in New York"></div>
+      <div class="frame" data-label="assets/photo-2.png"><img src="assets/photo-2.png" alt="Photograph"></div>
+      <div class="frame" data-label="assets/photo-3.png"><img src="assets/photo-3.png" alt="Photograph"></div>
+      <div class="frame" data-label="assets/photo-4.png"><img src="assets/photo-4.png" alt="Photograph"></div>
+    </div>
+    <p class="cap">Maya, somewhere in New York.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head"><h2>Get in touch</h2><span class="n">say hello</span></div>
+    <p class="prose">I'm looking for research and data science roles starting January 2027, in New York or remote. If you work on anything at the intersection of machine learning and neuroscience, I'd especially like to hear from you — and I'm always happy to talk to students thinking about engineering.</p>
+    <div class="contact-grid">
+      <a class="primary" href="mailto:vsh2108@columbia.edu">vsh2108@columbia.edu</a>
+      <a href="https://linkedin.com/in/vivianahanampa">LinkedIn</a>
+      <a href="https://github.com/vivianahanampa">GitHub</a>
+      <a href="assets/Viviana_Hanampa_Resume.pdf">Download CV (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><p>Viviana Hanampa · New York City · Built by hand, in HTML and CSS.</p></div>
+</footer>
+
+<script>
+document.querySelectorAll('.frame img').forEach(function (img) {
+  var handle = function () {
+    // Try the .jpg twin once before falling back to the labelled placeholder.
+    if (!img.dataset.retried && /\.png$/i.test(img.getAttribute('src') || '')) {
+      img.dataset.retried = '1';
+      img.src = img.getAttribute('src').replace(/\.png$/i, '.jpg');
+      return;
+    }
+    img.closest('.frame').classList.add('empty');
+  };
+  img.addEventListener('error', handle);
+  if (img.complete && img.naturalWidth === 0) handle();
+});
+</script>
