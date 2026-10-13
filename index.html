@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Viviana Hanampa</title>
 <meta name="description" content="Data scientist and researcher working on neural encoding models, multimodal representations, and applied machine learning. M.S. Data Science, Columbia University.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -137,6 +141,7 @@ section{padding:3.75rem 0;border-top:1px solid var(--rule)}
   font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;color:var(--muted);
   margin-left:auto;white-space:nowrap;text-transform:uppercase;
 }
+@media (max-width:30rem){.sec-head{flex-wrap:wrap;row-gap:.3rem}.sec-head .n{margin-left:0;width:100%}}
 .prose{max-width:62ch;color:var(--ink-2);font-size:1.06rem}
 .prose + .prose{margin-top:1.1rem}
 .prose b{color:var(--ink);font-weight:600}
@@ -202,6 +207,14 @@ section{padding:3.75rem 0;border-top:1px solid var(--rule)}
 }
 .status.live{background:var(--violet-soft);color:var(--violet)}
 .status.wip{background:var(--amber-soft);color:var(--amber)}
+.status.done{background:var(--surface-2);color:var(--ink-2)}
+.proj .r{
+  margin-top:.85rem;padding-left:.85rem;border-left:2px solid var(--amber);
+  color:var(--ink);font-size:.95rem;max-width:62ch;
+}
+.proj .r b{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-right:.35rem}
+.proj .repo-note{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.proj-more{margin-top:1.4rem;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
 .proj .q{
   margin-top:.85rem;font-family:var(--display);font-weight:500;font-size:1.16rem;
   line-height:1.4;color:var(--ink);max-width:54ch;letter-spacing:-.01em;
@@ -283,7 +296,7 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
         <span class="tag">3 years shipping ML</span>
       </div>
     </div>
-    <div class="frame portrait" data-label="assets/1-me-in-the-library.png"><img src="assets/1-me-in-the-library.png" alt="Viviana Hanampa"></div>
+    <div class="frame portrait" data-label="assets/1-me-in-the-library.png"><img src="assets/1-me-in-the-library.jpg" alt="Viviana Hanampa"></div>
   </div>
 </header>
 
@@ -413,12 +426,34 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
     <div class="projects">
 
       <article class="proj">
-        <div class="proj-top"><h3>Deep RL for competitive Pokémon</h3><span class="status live">Live</span></div>
+        <div class="proj-top"><h3>Algonauts 2025 — vision-language encoding</h3><span class="status wip">In progress</span></div>
+        <p class="q">Do vision–language embeddings predict visual cortex better than vision-only embeddings — and if so, where?</p>
+        <p class="d">Encoding models over 1,000 cortical regions comparing CLIP and SigLIP against DINOv2 and supervised ViT at matched architecture, on public fMRI data. The prediction, stated in advance: the multimodal advantage should be near zero in V1 and grow through the ventral stream.</p>
+        <p class="r"><b>So far</b>Across all 1,000 regions, the self-supervised vision model predicts brain activity 31% better than the language-supervised one.</p>
+        <div class="foot">
+          <span class="chip">PyTorch</span><span class="chip">nilearn</span><span class="chip">Ridge encoding</span>
+          <span class="repo-note">code in a private repo</span>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>EEG-to-text decoding</h3><span class="status wip">Prototype</span></div>
+        <p class="q">Can an 8-channel EEG headset recover the words someone is reading or hearing — and can the brain's own surprise signal catch the decoder's mistakes?</p>
+        <p class="d">Contrastive learning maps 8-channel EEG into T5 word-embedding space, then retrieves candidate words for each position. N400 features — the brain's response to a semantically unexpected word — flag implausible candidates, and a language model reconstructs the sentence from what's left. Built with Hazel Lim, on the open codebase from <em>Decoding individual words from non-invasive brain recordings</em>.</p>
+        <div class="foot">
+          <span class="chip">PyTorch</span><span class="chip">Contrastive learning</span><span class="chip">N400 / ERP</span><span class="chip">Team project</span>
+          <a class="repo" href="https://github.com/hazemaze02/eegeegtext">github →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>Deep RL for competitive Pokémon</h3><span class="status done">Complete</span></div>
         <p class="q">Can an agent learn competitive play well enough to consistently beat scripted opponents?</p>
-        <p class="d">DQN and Rainbow agents trained in the Pokémon Showdown environment. 150+ engineered state features with reward shaping for long-horizon planning, and a 100K-transition replay buffer that cut training time 60%.</p>
+        <p class="d">A Rainbow-style DQN — dueling heads, noisy-net exploration, prioritized replay with 3-step returns — trained over 2,000 Gen 1 battles on a local Pokémon Showdown server through UT Austin's metamon environment. 150+ engineered state features with reward shaping for long-horizon planning, and a 100K-transition replay buffer that cut training time 60%.</p>
+        <p class="r"><b>Result</b>It wins up to 70% of evaluation battles against a random opponent, but no more than 15% against the scripted Gen 1 boss AI. Consistently beating scripted play is still open.</p>
         <div class="foot">
           <span class="chip">PyTorch</span><span class="chip">Rainbow DQN</span><span class="chip">Prioritized replay</span>
-          <a class="repo" href="https://github.com/vivianahanampa/rl-pokemon">github →</a>
+          <a class="repo" href="https://github.com/vivianahanampa/RL-Pokemon">github →</a>
         </div>
       </article>
 
@@ -428,19 +463,27 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
         <p class="d">Three retrieval configurations over SEC filings, one fixed generator, one labelled question set — including deliberately unanswerable questions, because knowing when to abstain is the part most RAG evaluations skip. Scored on recall@k, MRR, faithfulness and cost per query.</p>
         <div class="foot">
           <span class="chip">LangChain</span><span class="chip">Pinecone</span><span class="chip">Cross-encoder rerank</span>
-          <a class="repo" href="https://github.com/vivianahanampa/edgar-rag">github →</a>
+          <a class="repo" href="https://github.com/vivianahanampa/Edgar-rag">github →</a>
         </div>
       </article>
 
+      <!--
+        Socioeconomic analysis of Peru (EDAV final project, Columbia, Fall 2025).
+        Hidden until the repo has content: on GitHub it is still the empty Quarto
+        template ("YOUR PROJECT TITLE"). Fill in a question and description, then
+        remove these comment markers.
+
       <article class="proj">
-        <div class="proj-top"><h3>Algonauts 2025 — vision-language encoding</h3><span class="status wip">In progress</span></div>
-        <p class="q">Do vision–language embeddings predict visual cortex better than vision-only embeddings — and if so, where?</p>
-        <p class="d">Voxelwise encoding models comparing CLIP and SigLIP against DINOv2 and supervised ViT at matched architecture, on public fMRI data. The prediction, stated in advance: the multimodal advantage should be near zero in V1 and grow through the ventral stream.</p>
+        <div class="proj-top"><h3>Socioeconomic analysis of Peru</h3><span class="status done">Complete</span></div>
+        <p class="q">QUESTION GOES HERE</p>
+        <p class="d">DESCRIPTION GOES HERE</p>
         <div class="foot">
-          <span class="chip">PyTorch</span><span class="chip">nilearn</span><span class="chip">Ridge encoding</span>
-          <a class="repo" href="https://github.com/blueshark123/algonauts2025-VLM">github →</a>
+          <span class="chip">R</span><span class="chip">Quarto</span><span class="chip">EDAV</span>
+          <a class="repo" href="https://vivianahanampa.github.io/socioeconomic-analysis-in-Peru/">report →</a>
+          <a class="repo" style="margin-left:.9rem" href="https://github.com/vivianahanampa/socioeconomic-analysis-in-Peru">github →</a>
         </div>
       </article>
+      -->
 
       <article class="proj">
         <div class="proj-top"><h3>Student success early-warning system</h3><span class="status live">In production</span></div>
@@ -450,6 +493,7 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
       </article>
 
     </div>
+    <p class="proj-more">Everything else, including coursework and experiments, is on <a href="https://github.com/vivianahanampa">github.com/vivianahanampa</a>.</p>
   </div>
 </section>
 
@@ -465,7 +509,7 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
           <a href="#" data-slot>Instagram →</a>
           <a href="#" data-slot>YouTube →</a>
           <a href="#" data-slot>TikTok →</a>
-          <a href="https://linkedin.com/in/vivianahanampa">LinkedIn →</a>
+          <a href="https://www.linkedin.com/in/viviana-hanampa">LinkedIn →</a>
         </div>
         <p class="cap">Send me the links and I'll wire these up.</p>
       </div>
@@ -497,11 +541,11 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
     </div>
 
     <div class="photo-grid">
-      <div class="frame wide" data-label="assets/photo-1.png&#10;— a favourite, wide —"><img src="assets/photo-1.png" alt="Photograph"></div>
-      <div class="frame" data-label="assets/maya-nyc.png&#10;— Maya &amp; me in NYC —"><img src="assets/maya-nyc.png" alt="Maya and me in New York"></div>
-      <div class="frame" data-label="assets/photo-2.png"><img src="assets/photo-2.png" alt="Photograph"></div>
-      <div class="frame" data-label="assets/photo-3.png"><img src="assets/photo-3.png" alt="Photograph"></div>
-      <div class="frame" data-label="assets/photo-4.png"><img src="assets/photo-4.png" alt="Photograph"></div>
+      <div class="frame wide" data-label="assets/photo-1.png&#10;— a favourite, wide —"><img src="assets/photo-1.jpg" alt="Bethesda Fountain, Central Park, in autumn"></div>
+      <div class="frame" data-label="assets/maya-nyc.png&#10;— Maya &amp; me in NYC —"><img src="assets/maya-nyc.jpg" alt="Maya and me" style="object-position:78% 50%"></div>
+      <div class="frame" data-label="assets/photo-2.png"><img src="assets/photo-2.jpg" alt="Maya, close up"></div>
+      <div class="frame" data-label="assets/photo-3.png"><img src="assets/photo-3.jpg" alt="A squirrel in autumn leaves"></div>
+      <div class="frame" data-label="assets/photo-4.png"><img src="assets/photo-4.jpg" alt="A toy alpaca on the Andean altiplano"></div>
     </div>
     <p class="cap">Maya, somewhere in New York.</p>
   </div>
@@ -513,9 +557,10 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
     <p class="prose">I'm looking for research and data science roles starting January 2027, in New York or remote. If you work on anything at the intersection of machine learning and neuroscience, I'd especially like to hear from you — and I'm always happy to talk to students thinking about engineering.</p>
     <div class="contact-grid">
       <a class="primary" href="mailto:vsh2108@columbia.edu">vsh2108@columbia.edu</a>
-      <a href="https://linkedin.com/in/vivianahanampa">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/viviana-hanampa">LinkedIn</a>
       <a href="https://github.com/vivianahanampa">GitHub</a>
-      <a href="assets/Viviana_Hanampa_Resume.pdf">Download CV (PDF)</a>
+      <!-- Add a GPA-free resume as assets/Viviana_Hanampa_Resume.pdf, then restore:
+      <a href="assets/Viviana_Hanampa_Resume.pdf">Download CV (PDF)</a> -->
     </div>
   </div>
 </section>
