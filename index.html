@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Viviana Hanampa</title>
-<meta name="description" content="Data scientist and researcher working on neural encoding models, multimodal representations, and applied machine learning. M.S. Data Science, Columbia University.">
+<meta name="description" content="Data scientist and researcher working on brain–computer interfaces, machine learning for neural signals, and how AI models relate to the brain. M.S. Data Science, Columbia University.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -24,6 +24,7 @@
   --amber:#B4560E;
   --amber-soft:#FAE7D3;
   --shadow:0 1px 2px rgba(22,21,29,.05), 0 20px 44px -30px rgba(22,21,29,.4);
+  --veil:86%; /* how much page colour covers the background photo */
 
   --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
   --body:"Karla","Helvetica Neue",Arial,sans-serif;
@@ -45,6 +46,7 @@
     --amber:#F0A85A;
     --amber-soft:#2F2113;
     --shadow:0 1px 2px rgba(0,0,0,.5), 0 22px 48px -32px rgba(0,0,0,.9);
+    --veil:84%;
   }
 }
 :root[data-theme="dark"]{
@@ -62,6 +64,7 @@
   --amber:#F0A85A;
   --amber-soft:#2F2113;
   --shadow:0 1px 2px rgba(0,0,0,.5), 0 22px 48px -32px rgba(0,0,0,.9);
+  --veil:84%;
 }
 
 *{box-sizing:border-box}
@@ -71,6 +74,16 @@ body{
   margin:0;background:var(--ground);color:var(--ink);
   font-family:var(--body);font-size:1.02rem;line-height:1.65;
   -webkit-font-smoothing:antialiased;
+}
+/* whole-page background: the library photo, softened and tinted with the page colour */
+body::before{
+  content:"";position:fixed;inset:-24px;z-index:-1;
+  background:url("assets/library-bg.jpg") center 30%/cover no-repeat;
+  filter:blur(3px);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:color-mix(in srgb, var(--ground) var(--veil), transparent);
 }
 h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
 p{margin:0}
@@ -152,6 +165,11 @@ section{padding:3.75rem 0;border-top:1px solid var(--rule)}
   padding:1.6rem 0;border-top:1px solid var(--rule);
 }
 .job:first-of-type{border-top:none;padding-top:.25rem}
+.group + .group{margin-top:2.6rem}
+.subhead{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;margin-bottom:.9rem;
+}
 .job .when{font-family:var(--mono);font-size:.75rem;color:var(--muted);padding-top:.45rem;line-height:1.7}
 .job h3{font-size:1.22rem;font-weight:700;letter-spacing:-.015em}
 .job .org{font-family:var(--mono);font-size:.78rem;color:var(--violet);margin-top:.3rem}
@@ -192,6 +210,7 @@ section{padding:3.75rem 0;border-top:1px solid var(--rule)}
 @media (max-width:46rem){.award{grid-template-columns:1fr;gap:.15rem}}
 .pub .label{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--amber)}
 .pub p{margin-top:.5rem;color:var(--ink);font-size:.98rem}
+.pub p + p{margin-top:.7rem}
 
 /* ---------- projects ---------- */
 .projects{display:grid;gap:1.1rem}
@@ -226,9 +245,11 @@ section{padding:3.75rem 0;border-top:1px solid var(--rule)}
 
 /* ---------- speaking ---------- */
 .split{display:grid;grid-template-columns:1fr 16rem;gap:2.75rem;align-items:start}
-.stack-2{display:grid;gap:1rem}
-.stack-2 .frame{aspect-ratio:4/3}
-@media (max-width:52rem){.split{grid-template-columns:1fr}.stack-2{grid-template-columns:1fr 1fr}}
+.talk-photo .frame{aspect-ratio:1}
+.talk-photo .frame img{object-position:50% 100%}
+@media (max-width:52rem){.split{grid-template-columns:1fr}.talk-photo{max-width:22rem}}
+.awards.wide .award{grid-template-columns:6.5rem 1fr}
+@media (max-width:46rem){.awards.wide .award{grid-template-columns:1fr}}
 .fill{
   font-family:var(--mono);font-size:.76rem;color:var(--amber);
   background:var(--amber-soft);padding:.12rem .4rem;border-radius:3px;
@@ -296,72 +317,143 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
         <span class="tag">3 years shipping ML</span>
       </div>
     </div>
-    <div class="frame portrait" data-label="assets/1-me-in-the-library.png"><img src="assets/1-me-in-the-library.jpg" alt="Viviana Hanampa"></div>
+    <div class="frame portrait" data-label="assets/portrait.jpg"><img src="assets/portrait.jpg" alt="Viviana Hanampa" style="object-position:50% 30%"></div>
   </div>
 </header>
 
 <section id="about">
   <div class="wrap">
     <div class="sec-head"><h2>About</h2><span class="n">the short version</span></div>
-    <p class="prose">I'm a data scientist and researcher finishing an <b>M.S. in Data Science at Columbia University</b>. At the Zuckerman Institute I work on neural encoding models — predicting fMRI brain activity from vision-language model representations, and asking whether multimodal networks encode anything beyond what vision and language encode separately.</p>
-    <p class="prose">Before Columbia I spent three years shipping machine learning in Lima, Peru. At <b>Interbank</b> I built credit-risk models serving 50,000+ customers and a retrieval-augmented generation system over financial filings. At <b>Telefónica</b> I deployed clustering models that cut field response times by 85%. At <b>IBM</b> I architected a real-time fraud-detection pipeline adopted by seven enterprise clients.</p>
-    <p class="prose">I trained as an <b>electronic engineer</b> first, which is probably why I like problems that run all the way from raw signal to deployed system. <b>Research interests:</b> neural encoding and decoding, multimodal representations across vision, language and audio, brain–computer interfaces, and applied machine learning for health.</p>
+    <p class="prose">I'm a data scientist and researcher finishing an <b>M.S. in Data Science at Columbia University</b>, working on how AI models and the brain represent the world. In the <b>Mesgarani Lab</b> I build fMRI encoding models that predict brain activity from vision and language model features. In the <b>Anacker Lab</b> at Columbia Psychiatry I'm building an AI video pipeline that tracks interacting mice, to test how one brain circuit shapes coping with social stress. And I first-authored <b>PocketSign</b>, a sign language recognition model small enough to run in a web browser.</p>
+    <p class="prose">Before Columbia I spent three years shipping machine learning in Lima, Peru. At <b>Interbank</b> I built credit-risk models serving 50,000+ customers and a retrieval-augmented generation system over financial filings. At <b>Telefónica</b> I deployed clustering models that cut field response times by 85%. At <b>IBM</b> I built a real-time fraud-detection pipeline adopted by seven enterprise clients.</p>
+    <p class="prose">I trained as an <b>electronic engineer</b> first, which is probably why I like problems that run all the way from raw signal to deployed system. <b>Research interests:</b> brain–computer interfaces, machine learning for neural and physiological signals, AI models and the brain, and AI for health.</p>
   </div>
 </section>
 
 <section id="experience">
   <div class="wrap">
-    <div class="sec-head"><h2>Experience</h2><span class="n">where I've worked</span></div>
+    <div class="sec-head"><h2>Experience</h2><span class="n">research, industry, teaching</span></div>
 
-    <div class="job">
-      <div class="when">Jan 2026 —<br>present</div>
-      <div>
-        <h3>Graduate Researcher</h3>
-        <div class="org">Columbia University · Zuckerman Institute · New York</div>
-        <ul>
-          <li>Building encoding models that predict fMRI brain activity from vision-language embeddings of paired visual and linguistic stimuli, benchmarked against unimodal baselines.</li>
-          <li>Engineering preprocessing and alignment pipelines for large-scale, multi-participant neuroimaging data.</li>
-          <li>Neural Acoustic Processing Lab, with Prof. Nima Mesgarani.</li>
-        </ul>
+    <div class="group">
+      <h3 class="subhead">Research</h3>
+
+      <div class="job">
+        <div class="when">Oct 2026 —<br>present</div>
+        <div>
+          <h3>Research Student</h3>
+          <div class="org">Anacker Lab · Department of Psychiatry, Columbia University Irving Medical Center · New York</div>
+          <ul>
+            <li>Building an AI video analysis pipeline with DeepLabCut and SimBA that tracks two interacting mice and automatically recognizes behaviors such as attacking, fleeing and freezing.</li>
+            <li>Applying it to test how a circuit from the hippocampus to the prefrontal cortex shapes how animals cope with social stress, a question relevant to depression and PTSD.</li>
+            <li>PI: Dr. Christoph Anacker.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="when">Jan 2026 —<br>present</div>
+        <div>
+          <h3>Researcher, Vision-Language Models and the Human Brain</h3>
+          <div class="org">NeuroTech Columbia · Mesgarani Lab, Columbia University · New York</div>
+          <ul>
+            <li>Building fMRI encoding models that predict the brain activity of 4 people watching <em>Friends</em> across 1,000 cortical regions, from vision and language model representations (DINOv3, SigLIP2, Qwen3).</li>
+            <li>Found that a self-supervised vision model predicts the brain 31% better than a language-supervised one in all 4 participants, and that combining vision and language features adds 18% more.</li>
+            <li>Supervised by Linyang He; faculty advisor Prof. Nima Mesgarani.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="when">May 2026 —<br>Sep 2026</div>
+        <div>
+          <h3>Research Collaborator, Sign Language Processing</h3>
+          <div class="org">Marist University · Prof. Gissella Bejarano's group · remote</div>
+          <ul>
+            <li>Designed and first-authored PocketSign, a compact model that recognizes signs from body-movement keypoints, built for low-resource sign languages such as Peruvian and Argentinian Sign Language. Under review at VISAPP 2027.</li>
+            <li>Matched a state-of-the-art model pretrained on 1,985 hours of sign video while being 956 times smaller and using no pretraining.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="when">Aug 2022 —<br>Feb 2024</div>
+        <div>
+          <h3>Research Assistant</h3>
+          <div class="org">Medical Imaging Laboratory, PUCP · Lima, Peru</div>
+          <ul>
+            <li>Led a 5-member interdisciplinary team building an AI diagnostic tool for pneumoconiosis, an occupational lung disease common among miners. First author of the resulting IEEE EMBC 2024 paper.</li>
+            <li>Designed a two-stage system that outlines the lungs on chest X-rays (96% overlap with expert outlines), then classifies the disease (87% accuracy), trained on 1,200+ annotated images.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="when">2023</div>
+        <div>
+          <h3>ML Research Engineer, Student Success Prediction</h3>
+          <div class="org">Cayetano Heredia University · Lima, Peru</div>
+          <ul>
+            <li>Designed and deployed an early-warning model that correctly flags 82% of first-year students at risk of failing, so counselors can intervene early. Still in use every semester.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="job">
-      <div class="when">Feb 2024 —<br>Aug 2025</div>
-      <div>
-        <h3>Data Scientist</h3>
-        <div class="org">Interbank · Lima, Peru</div>
-        <ul>
-          <li>Engineered 180+ predictive features, improving loan-default model performance 20% for 50,000+ customers.</li>
-          <li>Architected Project Inca, a GCP-to-AWS pipeline across 3+ real-time streams — 40% lower latency, unblocking 4 ML teams.</li>
-          <li>Built a RAG system over 500+ earnings reports at 92% metric-extraction accuracy, with LangChain, Pinecone and fine-tuned embeddings.</li>
-          <li>Automated IFRS9 provisioning on AWS, eliminating 388 hours of manual work a year. Nominated for the FLIP Innovation Award.</li>
-        </ul>
+    <div class="group">
+      <h3 class="subhead">Industry</h3>
+
+      <div class="job">
+        <div class="when">Feb 2024 —<br>Aug 2025</div>
+        <div>
+          <h3>Data Scientist</h3>
+          <div class="org">Interbank · Lima, Peru</div>
+          <ul>
+            <li>Engineered 180+ behavioral features, reducing loan-default prediction error 20% for 50,000+ customers.</li>
+            <li>Architected Project Inca, a real-time GCP-to-AWS data pipeline across 3+ streams — 40% lower latency, unblocking 4 ML teams.</li>
+            <li>Built a RAG system over 500+ earnings reports at 92% metric-extraction accuracy, with LangChain, Pinecone and fine-tuned embeddings.</li>
+            <li>Automated IFRS 9 loan-loss provisioning on AWS, saving 388 hours of manual work a year. Nominated for the FLIP Innovation Award.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="when">Sep 2023 —<br>Jan 2024</div>
+        <div>
+          <h3>Data Scientist · Young Executive Program</h3>
+          <div class="org">Telefónica / Movistar · Lima, Peru</div>
+          <ul>
+            <li>Redesigned Lima's technician service zones with clustering, cutting technician response time 85%.</li>
+            <li>Built an ML system that prioritizes 500+ daily repair requests and routes technicians, reducing missed service deadlines 30%.</li>
+            <li>Fine-tuned DistilBERT for sentiment classification at 89% accuracy, deployed as a FastAPI microservice.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="when">Aug 2022 —<br>Aug 2023</div>
+        <div>
+          <h3>Customer Success Manager Intern</h3>
+          <div class="org">IBM · Lima, Peru</div>
+          <ul>
+            <li>Built a real-time fraud-detection pipeline on IBM Event Streams (Kafka) with an MLOps workflow, adopted by 7 enterprise clients in Latin America.</li>
+            <li>Cut API response time 50% by redesigning a monolith into microservices.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="job">
-      <div class="when">Aug 2023 —<br>Feb 2024</div>
-      <div>
-        <h3>Data Scientist · Young Executive Program</h3>
-        <div class="org">Telefónica / Movistar · Lima, Peru</div>
-        <ul>
-          <li>Deployed a clustering model defining 3 optimal service zones across Lima's telecom infrastructure — 85% faster field response.</li>
-          <li>Designed ML ticket prioritization over 500+ daily maintenance requests, cutting SLA breaches 30%.</li>
-          <li>Fine-tuned DistilBERT for sentiment classification at 89% accuracy, deployed as a FastAPI microservice.</li>
-        </ul>
-      </div>
-    </div>
+    <div class="group">
+      <h3 class="subhead">Teaching</h3>
 
-    <div class="job">
-      <div class="when">Aug 2022 —<br>Aug 2023</div>
-      <div>
-        <h3>Customer Success Manager Intern</h3>
-        <div class="org">IBM · Lima, Peru</div>
-        <ul>
-          <li>Architected a real-time fraud-detection pipeline on IBM Event Streams (Kafka) with an MLOps workflow — adopted by 7 enterprise clients.</li>
-          <li>Cut API response time 50% by redesigning a monolith into microservices.</li>
-        </ul>
+      <div class="job">
+        <div class="when">Mar 2022 —<br>Dec 2024</div>
+        <div>
+          <h3>Teaching Assistant, Computer Architecture and Digital Signal Processing</h3>
+          <div class="org">Pontifical Catholic University of Peru · Lima</div>
+          <ul>
+            <li>Led weekly sessions for 50+ students across 3 courses over 6 semesters; designed problem sets and graded assignments.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -375,46 +467,59 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
         <div class="when">2025 — 2026</div>
         <div>
           <h3>M.S. Data Science</h3>
-          <div class="school">Columbia University · New York</div>
-          <p class="detail">Coursework in Reinforcement Learning, Machine Learning, Agentic AI for LLMs, and Statistical Inference.</p>
+          <div class="school">Columbia University · New York · expected Dec 2026</div>
+          <p class="detail">Funded by the Government of Peru National Scholarship. Coursework in Machine Learning, Reinforcement Learning, Advanced Neuroscience, and Statistical Inference.</p>
         </div>
       </div>
       <div class="deg">
         <div class="when">2018 — 2023</div>
         <div>
-          <h3>B.S. Electronic Engineering</h3>
+          <h3>B.S. Electronic Engineering, with Honors</h3>
           <div class="school">Pontifical Catholic University of Peru · Lima</div>
-          <p class="detail">Graduated with Honors. Coursework in Computer Vision, Digital Signal Processing, and Computer Architecture. Student representative for Electrical Engineering, and chapter chair of IEEE Robotics &amp; Automation Society.</p>
+          <p class="detail">Ranked 3rd in the Electronic Engineering class and in the top 10% of 387 engineering students. Coursework in Digital Signal Processing, Computer Vision, Computer Architecture, and Probability &amp; Statistics. Academic representative of the Electronic Engineering Student Association.</p>
         </div>
       </div>
     </div>
 
     <div class="pub">
-      <div class="label">Publication</div>
-      <p>V. Hanampa et al. “Diagnosis of Pneumoconiosis with Machine Learning.” <em>IEEE Engineering in Medicine and Biology Conference (EMBC 2023)</em>, Orlando, FL.</p>
+      <div class="label">Publications</div>
+      <p>V. Hanampa et al. “Diagnosis of Pneumoconiosis with Machine Learning.” <em>IEEE Engineering in Medicine and Biology Conference (EMBC)</em>, Orlando, FL, 2024.</p>
+      <p>V. Hanampa et al. “PocketSign: Small Enough to Deploy, Strong Enough Without Pretraining.” Under review, <em>VISAPP 2027</em>.</p>
     </div>
 
     <div class="awards">
-      <h3>Awards &amp; honours</h3>
+      <h3>Honors, awards &amp; fellowships</h3>
+      <div class="award">
+        <div class="yr">2026</div>
+        <div class="what"><b>Científico Latino GSMI Fellow</b> — a competitive national mentorship program for STEM PhD applicants, supported by the Simons Foundation.</div>
+      </div>
       <div class="award headline">
         <div class="yr">2025</div>
-        <div class="what"><b>Government of Peru National Scholarship</b> — a national competition awarding full funding for master’s study abroad to top candidates across Peru. This scholarship is what brought me to Columbia.</div>
+        <div class="what"><b>Government of Peru National Scholarship</b> — a competitive merit fellowship for top national candidates, funding my M.S. at Columbia. This scholarship is what brought me to New York.</div>
       </div>
       <div class="award">
         <div class="yr">2025</div>
-        <div class="what"><b>FLIP Innovation Award Nominee</b> — Interbank, for automating IFRS9 provisioning.</div>
+        <div class="what"><b>PhawAI Scholar</b> — one of 30 students selected nationwide for a fully funded AI research workshop, Universidad Católica San Pablo, Arequipa.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2025</div>
+        <div class="what"><b>FLIP Innovation Award Nominee</b> — Interbank, for automating IFRS 9 provisioning.</div>
       </div>
       <div class="award">
         <div class="yr">2023</div>
-        <div class="what"><b>1st Place</b>, National Automation Contest (Auto Challenge), Peru.</div>
+        <div class="what"><b>Finalist</b>, Data Science Hackathon — Comptroller General of Peru.</div>
       </div>
       <div class="award">
         <div class="yr">2022</div>
-        <div class="what"><b>Finalist</b>, National Data Science Hackathon — Comptroller General of Peru.</div>
+        <div class="what"><b>Top 5 of 150</b>, Women of Cisco Hackathon.</div>
       </div>
       <div class="award">
-        <div class="yr">2022</div>
-        <div class="what"><b>Top 5</b>, Hacka CYBER National Cybersecurity Hackathon, Peru.</div>
+        <div class="yr">2021</div>
+        <div class="what"><b>1st Place</b>, National Automation Contest, Peru.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2020</div>
+        <div class="what"><b>Finalist</b>, XVI International Summer Space School, Russia.</div>
       </div>
     </div>
   </div>
@@ -426,13 +531,33 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
     <div class="projects">
 
       <article class="proj">
-        <div class="proj-top"><h3>Algonauts 2025 — vision-language encoding</h3><span class="status wip">In progress</span></div>
-        <p class="q">Do vision–language embeddings predict visual cortex better than vision-only embeddings — and if so, where?</p>
-        <p class="d">Encoding models over 1,000 cortical regions comparing CLIP and SigLIP against DINOv2 and supervised ViT at matched architecture, on public fMRI data. The prediction, stated in advance: the multimodal advantage should be near zero in V1 and grow through the ventral stream.</p>
-        <p class="r"><b>So far</b>Across all 1,000 regions, the self-supervised vision model predicts brain activity 31% better than the language-supervised one.</p>
+        <div class="proj-top"><h3>PocketSign</h3><span class="status live">Under review · VISAPP 2027</span></div>
+        <p class="q">Can a sign language model small enough to run in a browser match one pretrained on 1,985 hours of video?</p>
+        <p class="d">A compact model that recognizes signs from body-movement keypoints, built for sign languages with very little data, such as Peruvian and Argentinian Sign Language. It uses no pretraining, and an interpretable body-part selection that adds up to 9.3 points and matches linguists' one- versus two-handed labels (AUC 0.89). First author, with Prof. Gissella Bejarano's group at Marist University.</p>
+        <p class="r"><b>Result</b>It matches the state-of-the-art pretrained model while being 956 times smaller: 1.25 points ahead on Argentinian and on par on Peruvian Sign Language. At 2.46 MB it runs in milliseconds on a laptop or in a browser, 56 times faster on CPU.</p>
         <div class="foot">
-          <span class="chip">PyTorch</span><span class="chip">nilearn</span><span class="chip">Ridge encoding</span>
+          <span class="chip">PyTorch</span><span class="chip">Pose keypoints</span><span class="chip">Runs in the browser</span>
+          <span class="repo-note">paper under review</span>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>Vision-language models and the human brain</h3><span class="status wip">In progress</span></div>
+        <p class="q">Does training a model with language make it more brain-like — or does vision alone get there first?</p>
+        <p class="d">Encoding models that predict the fMRI activity of 4 people watching <em>Friends</em> across 1,000 cortical regions, from vision and language model representations (DINOv3, SigLIP2, Qwen3). Trained on seasons 1–5 and tested on an unseen season 6. NeuroTech Columbia, Mesgarani Lab.</p>
+        <p class="r"><b>Result</b>A self-supervised vision model predicts the brain 31% better than a language-supervised one, in all 4 participants. Combining vision and language features adds another 18% (mean r = 0.18, non-overlapping 95% CIs).</p>
+        <div class="foot">
+          <span class="chip">PyTorch</span><span class="chip">Ridge encoding</span><span class="chip">Algonauts 2025 data</span>
           <span class="repo-note">code in a private repo</span>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>Brain–computer interface: decoding imagined movement</h3><span class="status wip">In progress</span></div>
+        <p class="q">How much calibration data does a new person need before an EEG decoder can read their imagined movements?</p>
+        <p class="d">A brain–computer interface that decodes imagined movements, such as left versus right hand, from EEG across different people, and measures how much calibration data each new user needs. A real-time demo is in development. Independent research project.</p>
+        <div class="foot">
+          <span class="chip">EEG</span><span class="chip">MNE-Python</span><span class="chip">MOABB</span>
         </div>
       </article>
 
@@ -488,8 +613,15 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
       <article class="proj">
         <div class="proj-top"><h3>Student success early-warning system</h3><span class="status live">In production</span></div>
         <p class="q">Can we identify students at risk of academic failure early enough to actually intervene?</p>
-        <p class="d">A gradient-boosting classifier reaching 82% recall on at-risk first-semester students, built from five cohorts of historical grade data. Adopted by the university advising office and still running — monitoring 1,000+ students per semester.</p>
+        <p class="d">A gradient-boosting classifier that correctly flags 82% of at-risk first-year students, so counselors can step in early. Built from five cohorts of historical grade data, and still in use at Cayetano Heredia University, monitoring hundreds of students each semester. Supervised by Dr. Brallan Balarezo.</p>
         <div class="foot"><span class="chip">XGBoost</span><span class="chip">Deployed</span></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top"><h3>TAKIA — a smart cane</h3><span class="status done">2023</span></div>
+        <p class="q">Can a cane tell a visually impaired pedestrian what color the traffic light is?</p>
+        <p class="d">A portable cane that turns traffic-light colors into vibrations, co-designed as an undergraduate team project at PUCP. Selected for the PUCP Startup Incubator.</p>
+        <div class="foot"><span class="chip">Assistive tech</span><span class="chip">Hardware</span><span class="chip">Team project</span></div>
       </article>
 
     </div>
@@ -502,8 +634,41 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
     <div class="sec-head"><h2>Speaking &amp; advocacy</h2><span class="n">the other half of the work</span></div>
     <div class="split">
       <div>
-        <p class="prose">I host <b>Mujeres al Volante</b>, a Spanish-language podcast about women in engineering and technology — the ones building things, and the ones who had to argue their way into the room first.</p>
-        <p class="prose">I also work to get more girls into STEM: giving talks, teaching, and being visible in rooms where there weren't many women when I was starting out. I've spoken at the PUCP Undergraduate Symposium, on an IEEE Signal Processing Society panel for International Women's Day, and at an IBM community event in Ecuador — and I spent six semesters as a teaching assistant in Computer Architecture and Digital Signal Processing, running seminars for 50+ students.</p>
+        <p class="prose">I founded and host <b>Mujeres al Volante</b> — Women Behind the Wheel. It began in 2023 as a journal club that taught AI to 15 girls, and grew into a Spanish-language podcast about women in engineering and technology, made to encourage more girls into STEM.</p>
+        <p class="prose">I also work to get more girls into STEM by giving talks, teaching, and being visible in rooms where there weren't many women when I was starting out.</p>
+
+        <div class="awards wide">
+          <h3>Talks</h3>
+          <div class="award">
+            <div class="yr">2026</div>
+            <div class="what"><b>Invited keynote</b>, “De las Aulas al Campo” (From the Classroom to the Field), PUCP Undergraduate Symposium.</div>
+          </div>
+          <div class="award">
+            <div class="yr">2025</div>
+            <div class="what"><b>Panelist</b>, Women in Engineering, IEEE Signal Processing Society, San Marcos University, Lima.</div>
+          </div>
+        </div>
+
+        <div class="awards wide">
+          <h3>Leadership &amp; service</h3>
+          <div class="award">
+            <div class="yr">2026 —</div>
+            <div class="what"><b>Vice President</b>, Peruvian Association at Columbia University.</div>
+          </div>
+          <div class="award">
+            <div class="yr">2022</div>
+            <div class="what"><b>Chair</b>, IEEE Robotics and Automation Society, PUCP. Led a 60-member chapter, grew weekly engagement from 0 to 700, and organized a robotics week with 7 Peruvian universities.</div>
+          </div>
+          <div class="award">
+            <div class="yr">2019 — 2023</div>
+            <div class="what"><b>IEEE Women in Engineering</b>, PUCP. Helped run school STEM events for girls.</div>
+          </div>
+          <div class="award">
+            <div class="yr">2019 — 2025</div>
+            <div class="what"><b>Volunteer</b>, For a Smile. Food and clothing drives and holiday events for children in need in Lima.</div>
+          </div>
+        </div>
+
         <div class="social">
           <a href="#" data-slot>Mujeres al Volante →</a>
           <a href="#" data-slot>Instagram →</a>
@@ -513,9 +678,8 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
         </div>
         <p class="cap">Send me the links and I'll wire these up.</p>
       </div>
-      <div class="stack-2">
-        <div class="frame" data-label="assets/2-me-giving-a-talk.png"><img src="assets/2-me-giving-a-talk.png" alt="Giving a talk"></div>
-        <div class="frame" data-label="assets/3-me-teaching.png"><img src="assets/3-me-teaching.png" alt="Teaching"></div>
+      <div class="talk-photo">
+        <div class="frame" data-label="assets/2-me-giving-a-talk.jpg"><img src="assets/2-me-giving-a-talk.jpg" alt="Viviana leading a hands-on STEM workshop with a group of girls"></div>
       </div>
     </div>
   </div>
