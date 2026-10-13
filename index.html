@@ -2,8 +2,17 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Viviana Hanampa</title>
+<title>Viviana Hanampa — Data Scientist &amp; ML Researcher</title>
 <meta name="description" content="Data scientist and researcher working on brain–computer interfaces, machine learning for neural signals, and how AI models relate to the brain. M.S. Data Science, Columbia University.">
+<meta name="theme-color" content="#F8F6F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0D14" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vivianahanampa.github.io/">
+<meta property="og:title" content="Viviana Hanampa — Data Scientist &amp; ML Researcher">
+<meta property="og:description" content="M.S. Data Science at Columbia. ML for the brain and for people: fMRI encoding models, brain–computer interfaces, sign language AI, and 3 years of production ML in banking and telecom.">
+<meta property="og:image" content="https://vivianahanampa.github.io/assets/portrait.jpg">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233D33C9'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='27' font-weight='700' text-anchor='middle' fill='white'%3EVH%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -15,16 +24,16 @@
   --surface-2:#EEEBE3;
   --ink:#16151D;
   --ink-2:#3E3D4C;
-  --muted:#6C6B7C;
+  --muted:#555465;
   --rule:#E2DFD6;
   --rule-2:#CBC7BB;
   --violet:#3D33C9;
   --violet-soft:#E6E4FB;
   --on-violet:#FFFFFF;
-  --amber:#B4560E;
+  --amber:#974505;
   --amber-soft:#FAE7D3;
   --shadow:0 1px 2px rgba(22,21,29,.05), 0 20px 44px -30px rgba(22,21,29,.4);
-  --veil:86%; /* how much page colour covers the background photo */
+  --veil:88%; /* how much page colour covers the background photo; lower shows more photo but hurts contrast */
 
   --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
   --body:"Karla","Helvetica Neue",Arial,sans-serif;
@@ -37,7 +46,7 @@
     --surface-2:#1E1D28;
     --ink:#EFEDF3;
     --ink-2:#C5C3D2;
-    --muted:#8D8B9F;
+    --muted:#A6A4B7;
     --rule:#252430;
     --rule-2:#38364A;
     --violet:#A79EFF;
@@ -46,7 +55,7 @@
     --amber:#F0A85A;
     --amber-soft:#2F2113;
     --shadow:0 1px 2px rgba(0,0,0,.5), 0 22px 48px -32px rgba(0,0,0,.9);
-    --veil:84%;
+    --veil:87%;
   }
 }
 :root[data-theme="dark"]{
@@ -55,7 +64,7 @@
   --surface-2:#1E1D28;
   --ink:#EFEDF3;
   --ink-2:#C5C3D2;
-  --muted:#8D8B9F;
+  --muted:#A6A4B7;
   --rule:#252430;
   --rule-2:#38364A;
   --violet:#A79EFF;
@@ -64,7 +73,7 @@
   --amber:#F0A85A;
   --amber-soft:#2F2113;
   --shadow:0 1px 2px rgba(0,0,0,.5), 0 22px 48px -32px rgba(0,0,0,.9);
-  --veil:84%;
+  --veil:87%;
 }
 
 *{box-sizing:border-box}
@@ -108,7 +117,23 @@ img{max-width:100%;display:block}
   color:var(--muted);text-decoration:none;
 }
 .topbar nav a:hover{color:var(--violet)}
+.topbar .btn{padding:.42rem .85rem;font-size:.7rem}
 @media (max-width:50rem){.topbar nav{display:none}}
+section{scroll-margin-top:3.5rem}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--mono);font-size:.8rem;text-decoration:none;white-space:nowrap;
+  padding:.7rem 1.1rem;border-radius:99px;border:1px solid var(--rule-2);
+  color:var(--ink);background:var(--surface);
+  transition:border-color .15s,color .15s,transform .15s;
+}
+.btn:hover{border-color:var(--violet);color:var(--violet);transform:translateY(-1px)}
+.btn.primary{background:var(--violet);border-color:var(--violet);color:var(--on-violet)}
+.btn.primary:hover{color:var(--on-violet);filter:brightness(1.1)}
+.btn.ghost{background:transparent}
+.btn:focus-visible{outline:2px solid var(--violet);outline-offset:3px}
 
 /* ---------- hero ---------- */
 .hero{padding:4.5rem 0 3.5rem}
@@ -139,8 +164,43 @@ h1{
 }
 .tagline{margin-top:1.4rem;font-size:1.28rem;line-height:1.5;color:var(--ink-2);max-width:36ch}
 .tagline b{color:var(--ink);font-weight:600}
-.hero-meta{margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.cta{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:.6rem}
+.hero-meta{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.5rem}
+@media (max-width:52rem){.hero .frame.portrait{order:-1;max-width:13rem}}
+.dot{display:inline-block;width:.45rem;height:.45rem;border-radius:50%;background:currentColor;margin-right:.45rem;vertical-align:.08em}
+
+/* ---------- at-a-glance numbers ---------- */
+.stats{
+  margin:3rem 0 0;display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--surface);border:1px solid var(--rule);border-radius:8px;box-shadow:var(--shadow);
+}
+.stats > div{padding:1.15rem 1.35rem;border-left:1px solid var(--rule)}
+.stats > div:first-child{border-left:none}
+.stats dt{font-family:var(--display);font-weight:800;font-size:1.9rem;letter-spacing:-.03em;line-height:1.1;color:var(--violet)}
+.stats dd{margin:.35rem 0 0;font-size:.86rem;line-height:1.45;color:var(--ink-2)}
+@media (max-width:52rem){
+  .stats{grid-template-columns:1fr 1fr}
+  .stats > div:nth-child(3){border-left:none}
+  .stats > div:nth-child(n+3){border-top:1px solid var(--rule)}
+}
+
+/* ---------- toolkit ---------- */
+.toolkit{margin-top:2.2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:46rem){.toolkit{grid-template-columns:1fr}}
+.tk{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:1.1rem 1.25rem;box-shadow:var(--shadow)}
+.tk h3{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:.7rem}
+.tk .chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.tk .chip{color:var(--ink-2);font-size:.72rem}
+
+/* ---------- contact card ---------- */
+.contact-card{
+  background:var(--surface);border:1px solid var(--rule);border-radius:10px;box-shadow:var(--shadow);
+  padding:2.4rem 2.2rem;border-top:4px solid var(--violet);
+}
+.contact-card h2{font-size:clamp(2rem,5vw,2.8rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem}
+@media (max-width:46rem){.contact-card{padding:1.8rem 1.3rem}}
 .tag{
+  background:color-mix(in srgb, var(--surface) 75%, transparent);
   font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;
   padding:.32rem .65rem;border:1px solid var(--rule-2);border-radius:99px;color:var(--ink-2);
 }
@@ -215,6 +275,7 @@ section{padding:3.75rem 0;border-top:1px solid var(--rule)}
 /* ---------- projects ---------- */
 .projects{display:grid;gap:1.1rem}
 .proj{
+  transition:transform .2s,box-shadow .2s;
   background:var(--surface);border:1px solid var(--rule);border-radius:8px;
   padding:1.6rem 1.7rem;box-shadow:var(--shadow);
 }
@@ -260,7 +321,7 @@ section{padding:3.75rem 0;border-top:1px solid var(--rule)}
   padding:.48rem .8rem;border:1px solid var(--rule-2);border-radius:99px;color:var(--ink);
 }
 .social a:hover{border-color:var(--violet);color:var(--violet)}
-.social a[data-slot]{border-style:dashed;color:var(--muted)}
+.social a{background:var(--surface)}
 
 /* ---------- more about me ---------- */
 .facets{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
@@ -288,36 +349,57 @@ section{padding:3.75rem 0;border-top:1px solid var(--rule)}
 .contact-grid a.primary{background:var(--violet);border-color:var(--violet);color:var(--on-violet)}
 
 footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between}
+footer a{color:var(--muted)}
+@media print{
+  body::before,body::after,.topbar,.cta{display:none}
+  .proj,.deg,.stats,.tk,.contact-card,.frame{box-shadow:none}
+  section{padding:1.5rem 0}
+}
 </style>
 
-<div class="topbar">
+<div class="topbar" id="top">
   <div class="wrap">
     <span class="mark">Viviana Hanampa</span>
-    <nav>
+    <nav aria-label="Sections">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
       <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
       <a href="#speaking">Speaking</a>
-      <a href="#more">More about me</a>
       <a href="#contact">Contact</a>
     </nav>
+    <a class="btn primary" href="mailto:vsh2108@columbia.edu">Email me</a>
   </div>
 </div>
 
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">Data scientist &amp; researcher · New York City</div>
+      <div class="eyebrow">Data scientist &amp; ML researcher · New York City</div>
       <h1>Viviana Hanampa</h1>
       <p class="tagline">I build machine learning systems that reach real people — and study how <b>artificial and biological</b> networks come to represent the world.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:vsh2108@columbia.edu">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/viviana-hanampa">LinkedIn</a>
+        <a class="btn" href="https://github.com/vivianahanampa">GitHub</a>
+        <a class="btn ghost" href="#projects">See projects ↓</a>
+      </div>
       <div class="hero-meta">
-        <span class="tag on">Open to research &amp; data science roles, Jan 2027</span>
+        <span class="tag on"><span class="dot"></span>Open to research &amp; data science roles · Jan 2027</span>
         <span class="tag">M.S. Data Science, Columbia</span>
-        <span class="tag">3 years shipping ML</span>
+        <span class="tag">New York or remote</span>
       </div>
     </div>
-    <div class="frame portrait" data-label="assets/portrait.jpg"><img src="assets/portrait.jpg" alt="Viviana Hanampa" style="object-position:50% 30%"></div>
+    <div class="frame portrait" data-label="assets/portrait.jpg"><img src="assets/portrait.jpg" alt="Viviana Hanampa" style="object-position:50% 30%" fetchpriority="high"></div>
+  </div>
+  <div class="wrap">
+    <dl class="stats">
+      <div><dt>2</dt><dd>first-author papers: IEEE EMBC 2024, and VISAPP 2027 under review</dd></div>
+      <div><dt>3 yrs</dt><dd>shipping production ML at Interbank, Telefónica and IBM</dd></div>
+      <div><dt>20%</dt><dd>lower loan-default prediction error, for 50,000+ customers</dd></div>
+      <div><dt>956×</dt><dd>smaller than the state-of-the-art sign model that PocketSign matches</dd></div>
+    </dl>
   </div>
 </header>
 
@@ -327,6 +409,21 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
     <p class="prose">I'm a data scientist and researcher finishing an <b>M.S. in Data Science at Columbia University</b>, working on how AI models and the brain represent the world. In the <b>Mesgarani Lab</b> I build fMRI encoding models that predict brain activity from vision and language model features. In the <b>Anacker Lab</b> at Columbia Psychiatry I'm building an AI video pipeline that tracks interacting mice, to test how one brain circuit shapes coping with social stress. And I first-authored <b>PocketSign</b>, a sign language recognition model small enough to run in a web browser.</p>
     <p class="prose">Before Columbia I spent three years shipping machine learning in Lima, Peru. At <b>Interbank</b> I built credit-risk models serving 50,000+ customers and a retrieval-augmented generation system over financial filings. At <b>Telefónica</b> I deployed clustering models that cut field response times by 85%. At <b>IBM</b> I built a real-time fraud-detection pipeline adopted by seven enterprise clients.</p>
     <p class="prose">I trained as an <b>electronic engineer</b> first, which is probably why I like problems that run all the way from raw signal to deployed system. <b>Research interests:</b> brain–computer interfaces, machine learning for neural and physiological signals, AI models and the brain, and AI for health.</p>
+
+    <div class="toolkit">
+      <div class="tk"><h3>Machine learning</h3><div class="chips">
+        <span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">Hugging Face</span><span class="chip">OpenCV</span><span class="chip">LangChain</span>
+      </div></div>
+      <div class="tk"><h3>Neural &amp; signal data</h3><div class="chips">
+        <span class="chip">EEG</span><span class="chip">MNE-Python</span><span class="chip">MOABB</span><span class="chip">fMRI encoding models</span><span class="chip">Digital signal processing</span>
+      </div></div>
+      <div class="tk"><h3>Programming</h3><div class="chips">
+        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">R</span><span class="chip">MATLAB</span><span class="chip">C</span>
+      </div></div>
+      <div class="tk"><h3>Cloud &amp; MLOps</h3><div class="chips">
+        <span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">MLflow</span><span class="chip">Spark</span><span class="chip">Kafka</span>
+      </div></div>
+    </div>
   </div>
 </section>
 
@@ -459,72 +556,6 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
   </div>
 </section>
 
-<section id="education">
-  <div class="wrap">
-    <div class="sec-head"><h2>Education</h2><span class="n">where I studied</span></div>
-    <div class="edu">
-      <div class="deg">
-        <div class="when">2025 — 2026</div>
-        <div>
-          <h3>M.S. Data Science</h3>
-          <div class="school">Columbia University · New York · expected Dec 2026</div>
-          <p class="detail">Funded by the Government of Peru National Scholarship. Coursework in Machine Learning, Reinforcement Learning, Advanced Neuroscience, and Statistical Inference.</p>
-        </div>
-      </div>
-      <div class="deg">
-        <div class="when">2018 — 2023</div>
-        <div>
-          <h3>B.S. Electronic Engineering, with Honors</h3>
-          <div class="school">Pontifical Catholic University of Peru · Lima</div>
-          <p class="detail">Ranked 3rd in the Electronic Engineering class and in the top 10% of 387 engineering students. Coursework in Digital Signal Processing, Computer Vision, Computer Architecture, and Probability &amp; Statistics. Academic representative of the Electronic Engineering Student Association.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="pub">
-      <div class="label">Publications</div>
-      <p>V. Hanampa et al. “Diagnosis of Pneumoconiosis with Machine Learning.” <em>IEEE Engineering in Medicine and Biology Conference (EMBC)</em>, Orlando, FL, 2024.</p>
-      <p>V. Hanampa et al. “PocketSign: Small Enough to Deploy, Strong Enough Without Pretraining.” Under review, <em>VISAPP 2027</em>.</p>
-    </div>
-
-    <div class="awards">
-      <h3>Honors, awards &amp; fellowships</h3>
-      <div class="award">
-        <div class="yr">2026</div>
-        <div class="what"><b>Científico Latino GSMI Fellow</b> — a competitive national mentorship program for STEM PhD applicants, supported by the Simons Foundation.</div>
-      </div>
-      <div class="award headline">
-        <div class="yr">2025</div>
-        <div class="what"><b>Government of Peru National Scholarship</b> — a competitive merit fellowship for top national candidates, funding my M.S. at Columbia. This scholarship is what brought me to New York.</div>
-      </div>
-      <div class="award">
-        <div class="yr">2025</div>
-        <div class="what"><b>PhawAI Scholar</b> — one of 30 students selected nationwide for a fully funded AI research workshop, Universidad Católica San Pablo, Arequipa.</div>
-      </div>
-      <div class="award">
-        <div class="yr">2025</div>
-        <div class="what"><b>FLIP Innovation Award Nominee</b> — Interbank, for automating IFRS 9 provisioning.</div>
-      </div>
-      <div class="award">
-        <div class="yr">2023</div>
-        <div class="what"><b>Finalist</b>, Data Science Hackathon — Comptroller General of Peru.</div>
-      </div>
-      <div class="award">
-        <div class="yr">2022</div>
-        <div class="what"><b>Top 5 of 150</b>, Women of Cisco Hackathon.</div>
-      </div>
-      <div class="award">
-        <div class="yr">2021</div>
-        <div class="what"><b>1st Place</b>, National Automation Contest, Peru.</div>
-      </div>
-      <div class="award">
-        <div class="yr">2020</div>
-        <div class="what"><b>Finalist</b>, XVI International Summer Space School, Russia.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="projects">
   <div class="wrap">
     <div class="sec-head"><h2>Projects</h2><span class="n">questions, not demos</span></div>
@@ -629,6 +660,72 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
   </div>
 </section>
 
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><h2>Education</h2><span class="n">where I studied</span></div>
+    <div class="edu">
+      <div class="deg">
+        <div class="when">2025 — 2026</div>
+        <div>
+          <h3>M.S. Data Science</h3>
+          <div class="school">Columbia University · New York · expected Dec 2026</div>
+          <p class="detail">Funded by the Government of Peru National Scholarship. Coursework in Machine Learning, Reinforcement Learning, Advanced Neuroscience, and Statistical Inference.</p>
+        </div>
+      </div>
+      <div class="deg">
+        <div class="when">2018 — 2023</div>
+        <div>
+          <h3>B.S. Electronic Engineering, with Honors</h3>
+          <div class="school">Pontifical Catholic University of Peru · Lima</div>
+          <p class="detail">Ranked 3rd in the Electronic Engineering class and in the top 10% of 387 engineering students. Coursework in Digital Signal Processing, Computer Vision, Computer Architecture, and Probability &amp; Statistics. Academic representative of the Electronic Engineering Student Association.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="label">Publications</div>
+      <p>V. Hanampa et al. “Diagnosis of Pneumoconiosis with Machine Learning.” <em>IEEE Engineering in Medicine and Biology Conference (EMBC)</em>, Orlando, FL, 2024.</p>
+      <p>V. Hanampa et al. “PocketSign: Small Enough to Deploy, Strong Enough Without Pretraining.” Under review, <em>VISAPP 2027</em>.</p>
+    </div>
+
+    <div class="awards">
+      <h3>Honors, awards &amp; fellowships</h3>
+      <div class="award">
+        <div class="yr">2026</div>
+        <div class="what"><b>Científico Latino GSMI Fellow</b> — a competitive national mentorship program for STEM PhD applicants, supported by the Simons Foundation.</div>
+      </div>
+      <div class="award headline">
+        <div class="yr">2025</div>
+        <div class="what"><b>Government of Peru National Scholarship</b> — a competitive merit fellowship for top national candidates, funding my M.S. at Columbia. This scholarship is what brought me to New York.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2025</div>
+        <div class="what"><b>PhawAI Scholar</b> — one of 30 students selected nationwide for a fully funded AI research workshop, Universidad Católica San Pablo, Arequipa.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2025</div>
+        <div class="what"><b>FLIP Innovation Award Nominee</b> — Interbank, for automating IFRS 9 provisioning.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2023</div>
+        <div class="what"><b>Finalist</b>, Data Science Hackathon — Comptroller General of Peru.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2022</div>
+        <div class="what"><b>Top 5 of 150</b>, Women of Cisco Hackathon.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2021</div>
+        <div class="what"><b>1st Place</b>, National Automation Contest, Peru.</div>
+      </div>
+      <div class="award">
+        <div class="yr">2020</div>
+        <div class="what"><b>Finalist</b>, XVI International Summer Space School, Russia.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="speaking">
   <div class="wrap">
     <div class="sec-head"><h2>Speaking &amp; advocacy</h2><span class="n">the other half of the work</span></div>
@@ -670,16 +767,12 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
         </div>
 
         <div class="social">
-          <a href="#" data-slot>Mujeres al Volante →</a>
-          <a href="#" data-slot>Instagram →</a>
-          <a href="#" data-slot>YouTube →</a>
-          <a href="#" data-slot>TikTok →</a>
-          <a href="https://www.linkedin.com/in/viviana-hanampa">LinkedIn →</a>
+          <a href="https://open.spotify.com/show/7gPlHgRlcNghAO7UEzJ1Fd">Listen to the podcast on Spotify →</a>
+          <a href="https://www.youtube.com/@vivianaselenia6795">YouTube →</a>
         </div>
-        <p class="cap">Send me the links and I'll wire these up.</p>
       </div>
       <div class="talk-photo">
-        <div class="frame" data-label="assets/2-me-giving-a-talk.jpg"><img src="assets/2-me-giving-a-talk.jpg" alt="Viviana leading a hands-on STEM workshop with a group of girls"></div>
+        <div class="frame" data-label="assets/2-me-giving-a-talk.jpg"><img loading="lazy" decoding="async" src="assets/2-me-giving-a-talk.jpg" alt="Viviana leading a hands-on STEM workshop with a group of girls"></div>
       </div>
     </div>
   </div>
@@ -705,11 +798,11 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
     </div>
 
     <div class="photo-grid">
-      <div class="frame wide" data-label="assets/photo-1.png&#10;— a favourite, wide —"><img src="assets/photo-1.jpg" alt="Bethesda Fountain, Central Park, in autumn"></div>
-      <div class="frame" data-label="assets/maya-nyc.png&#10;— Maya &amp; me in NYC —"><img src="assets/maya-nyc.jpg" alt="Maya and me" style="object-position:78% 50%"></div>
-      <div class="frame" data-label="assets/photo-2.png"><img src="assets/photo-2.jpg" alt="Maya, close up"></div>
-      <div class="frame" data-label="assets/photo-3.png"><img src="assets/photo-3.jpg" alt="A squirrel in autumn leaves"></div>
-      <div class="frame" data-label="assets/photo-4.png"><img src="assets/photo-4.jpg" alt="A toy alpaca on the Andean altiplano"></div>
+      <div class="frame wide" data-label="assets/photo-1.png&#10;— a favourite, wide —"><img loading="lazy" decoding="async" src="assets/photo-1.jpg" alt="Bethesda Fountain, Central Park, in autumn"></div>
+      <div class="frame" data-label="assets/maya-nyc.png&#10;— Maya &amp; me in NYC —"><img loading="lazy" decoding="async" src="assets/maya-nyc.jpg" alt="Maya and me" style="object-position:78% 50%"></div>
+      <div class="frame" data-label="assets/photo-2.png"><img loading="lazy" decoding="async" src="assets/photo-2.jpg" alt="Maya, close up"></div>
+      <div class="frame" data-label="assets/photo-3.png"><img loading="lazy" decoding="async" src="assets/photo-3.jpg" alt="A squirrel in autumn leaves"></div>
+      <div class="frame" data-label="assets/photo-4.png"><img loading="lazy" decoding="async" src="assets/photo-4.jpg" alt="A toy alpaca on the Andean altiplano"></div>
     </div>
     <p class="cap">Maya, somewhere in New York.</p>
   </div>
@@ -717,20 +810,23 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
 
 <section id="contact">
   <div class="wrap">
-    <div class="sec-head"><h2>Get in touch</h2><span class="n">say hello</span></div>
-    <p class="prose">I'm looking for research and data science roles starting January 2027, in New York or remote. If you work on anything at the intersection of machine learning and neuroscience, I'd especially like to hear from you — and I'm always happy to talk to students thinking about engineering.</p>
-    <div class="contact-grid">
-      <a class="primary" href="mailto:vsh2108@columbia.edu">vsh2108@columbia.edu</a>
-      <a href="https://www.linkedin.com/in/viviana-hanampa">LinkedIn</a>
-      <a href="https://github.com/vivianahanampa">GitHub</a>
-      <!-- Add a GPA-free resume as assets/Viviana_Hanampa_Resume.pdf, then restore:
-      <a href="assets/Viviana_Hanampa_Resume.pdf">Download CV (PDF)</a> -->
+    <div class="contact-card">
+      <div class="eyebrow">Available from January 2027 · New York or remote</div>
+      <h2>Let's work together</h2>
+      <p class="prose">I'm looking for research and data science roles. If you work on anything at the intersection of machine learning and neuroscience, or ML that reaches real people, I'd especially like to hear from you. I'm also always happy to talk to students thinking about engineering.</p>
+      <div class="contact-grid">
+        <a class="primary" href="mailto:vsh2108@columbia.edu">vsh2108@columbia.edu</a>
+        <a href="https://www.linkedin.com/in/viviana-hanampa">LinkedIn</a>
+        <a href="https://github.com/vivianahanampa">GitHub</a>
+        <!-- Add a resume without GPA as assets/Viviana_Hanampa_Resume.pdf, then restore:
+        <a href="assets/Viviana_Hanampa_Resume.pdf">Download CV (PDF)</a> -->
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap"><p>Viviana Hanampa · New York City · Built by hand, in HTML and CSS.</p></div>
+  <div class="wrap"><p>© 2026 Viviana Hanampa · New York City</p><p><a href="#top">Back to top ↑</a></p></div>
 </footer>
 
 <script>
