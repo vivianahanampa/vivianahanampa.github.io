@@ -226,6 +226,30 @@ section{padding:3.75rem 0;border-top:1px solid var(--rule)}
 }
 .job:first-of-type{border-top:none;padding-top:.25rem}
 .group + .group{margin-top:2.6rem}
+.group{scroll-margin-top:7.75rem}
+
+/* sticky jump buttons inside Experience */
+.subnav{
+  position:sticky;top:4.1rem;z-index:10;
+  display:flex;gap:.3rem;width:max-content;max-width:100%;
+  overflow-x:auto;scrollbar-width:none;
+  margin:0 0 2rem;padding:.3rem;
+  background:var(--surface);border:1px solid var(--rule);border-radius:99px;box-shadow:var(--shadow);
+}
+.subnav::-webkit-scrollbar{display:none}
+.subnav a{
+  flex:none;display:inline-flex;align-items:center;gap:.45rem;
+  font-family:var(--mono);font-size:.76rem;text-decoration:none;white-space:nowrap;
+  padding:.5rem .95rem;border-radius:99px;color:var(--ink-2);
+  transition:background .15s,color .15s;
+}
+.subnav a:hover{color:var(--violet);background:var(--violet-soft)}
+.subnav a.on{background:var(--violet);color:var(--on-violet)}
+.subnav .count{
+  font-size:.66rem;min-width:1.25rem;text-align:center;padding:.05rem .35rem;border-radius:99px;
+  background:var(--surface-2);color:var(--ink-2);
+}
+.subnav a.on .count{background:color-mix(in srgb, var(--on-violet) 22%, transparent);color:var(--on-violet)}
 .subhead{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;
   color:var(--muted);font-weight:500;margin-bottom:.9rem;
@@ -352,7 +376,7 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);color:var(--muted)
 footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between}
 footer a{color:var(--muted)}
 @media print{
-  body::before,body::after,.topbar,.cta{display:none}
+  body::before,body::after,.topbar,.cta,.subnav{display:none}
   .proj,.deg,.stats,.tk,.contact-card,.frame{box-shadow:none}
   section{padding:1.5rem 0}
 }
@@ -388,7 +412,7 @@ footer a{color:var(--muted)}
       <div class="hero-meta">
         <span class="tag on"><span class="dot"></span>Open to research &amp; data science roles · Jan 2027</span>
         <span class="tag">M.S. Data Science, Columbia</span>
-        <span class="tag">New York or remote</span>
+        <span class="tag">Open to relocating anywhere</span>
       </div>
     </div>
     <div class="frame portrait" data-label="assets/portrait.jpg"><img src="assets/portrait.jpg" alt="Viviana Hanampa" style="object-position:50% 30%" fetchpriority="high"></div>
@@ -431,7 +455,14 @@ footer a{color:var(--muted)}
   <div class="wrap">
     <div class="sec-head"><h2>Experience</h2><span class="n">research, industry, teaching</span></div>
 
-    <div class="group">
+    <nav class="subnav" aria-label="Jump to part of Experience">
+      <a href="#research">Research <span class="count">5</span></a>
+      <a href="#industry">Industry <span class="count">3</span></a>
+      <a href="#teaching">Teaching <span class="count">1</span></a>
+      <a href="#projects">Projects ↓</a>
+    </nav>
+
+    <div class="group" id="research">
       <h3 class="subhead">Research</h3>
 
       <div class="job">
@@ -496,7 +527,7 @@ footer a{color:var(--muted)}
       </div>
     </div>
 
-    <div class="group">
+    <div class="group" id="industry">
       <h3 class="subhead">Industry</h3>
 
       <div class="job">
@@ -539,7 +570,7 @@ footer a{color:var(--muted)}
       </div>
     </div>
 
-    <div class="group">
+    <div class="group" id="teaching">
       <h3 class="subhead">Teaching</h3>
 
       <div class="job">
@@ -811,7 +842,7 @@ footer a{color:var(--muted)}
 <section id="contact">
   <div class="wrap">
     <div class="contact-card">
-      <div class="eyebrow">Available from January 2027 · New York or remote</div>
+      <div class="eyebrow">Available from January 2027 · open to relocating anywhere</div>
       <h2>Let's work together</h2>
       <p class="prose">I'm looking for research and data science roles. If you work on anything at the intersection of machine learning and neuroscience, or ML that reaches real people, I'd especially like to hear from you. I'm also always happy to talk to students thinking about engineering.</p>
       <div class="contact-grid">
@@ -843,4 +874,23 @@ document.querySelectorAll('.frame img').forEach(function (img) {
   img.addEventListener('error', handle);
   if (img.complete && img.naturalWidth === 0) handle();
 });
+
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.subnav a'));
+  if (!('IntersectionObserver' in window) || !links.length) return;
+  var byId = {};
+  links.forEach(function (a) {
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el && el.classList.contains('group')) byId[el.id] = a;
+  });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (l) { l.classList.remove('on'); l.removeAttribute('aria-current'); });
+      byId[e.target.id].classList.add('on');
+      byId[e.target.id].setAttribute('aria-current', 'location');
+    });
+  }, { rootMargin: '-35% 0px -60% 0px' });
+  Object.keys(byId).forEach(function (id) { io.observe(document.getElementById(id)); });
+})();
 </script>
